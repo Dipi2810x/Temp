@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confetti Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: black;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* Rose Image Style */
+        .rose {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-image: url('rose.webp'); /* Replace with the actual rose image path */
+            background-size: cover;
+            opacity: 0.8;
+            animation: fadeIn 2s ease-in-out forwards;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Happy Valentine's Day Message */
+        #valentinesMessage {
+            display: none;
+            font-size: 9em;
+            color: pink; /* Deep red color */
+            font-weight: bold;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 50px;
+        }
+
+        /* Hide the content when the message appears */
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        // Function to create roses at random positions
+        function createRose() {
+            const rose = document.createElement('div');
+            rose.classList.add('rose');
+            rose.style.left = `${Math.random() * 100}vw`;  // Random horizontal position
+            rose.style.top = `${Math.random() * 100}vh`;   // Random vertical position
+
+            document.body.appendChild(rose);
+
+            // Remove roses after they stay on the screen for 3 seconds
+            setTimeout(() => {
+                rose.remove();
+            }, 3000);
+        }
+
+        // Start creating roses at intervals
+        setInterval(createRose, 100);  // Adjust to control the speed of multiplication
+
+        // Check if roses have filled the screen and show the message
+        setInterval(() => {
+            const roses = document.querySelectorAll('.rose');
+            if (roses.length > 30) { // You can adjust this number based on when you want the message to show
+                // Hide the cat image and heading
+                document.querySelector('h1').classList.add('hidden');
+                document.querySelector('img').classList.add('hidden');
+
+                // Show the Happy Valentine's Day message
+                document.getElementById('valentinesMessage').style.display = 'block';
+            }
+        }, 1000);
+    </script>
+</head>
+<body>
+    <h1>In my paw I bear a rose for the pretty lady</h1>
+    <img src="Rosey_cat.jpg" alt="Cat holding roses">
+    <div id="valentinesMessage">Happy Valentine's Day!</div>
+</body>
+</html>
+

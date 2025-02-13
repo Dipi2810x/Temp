@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .loading-bar {
+            width: 80%;
+            height: 20px;
+            background-color: lightgray;
+            position: relative;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
+        .loading-bar::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background-color: green;
+            animation: loading 5s linear forwards;
+        }
+
+        @keyframes loading {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+
+        .message {
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Loading...</h1>
+    <div class="loading-bar"></div>
+    <p class="message">Take this time to rethink your answer...</p>
+
+    <script>
+        // After loading completes, redirect to the main content page
+        setTimeout(() => {
+            window.location.href = 'clickme.html';  // Redirect to the main content page
+        }, 5000);  // Adjust the time to match the loading animation duration
+    </script>
+</body>
+</html>
